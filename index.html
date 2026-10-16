@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="format-detection" content="telephone=no">
+<title>塩麹ワークショップ お客様の声</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700&family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  /* 色とフォントは「発酵ドレッシング診断」とそろえている */
+  :root {
+    --bg: #EEEADA;
+    --card: #FBF8F0;
+    --ink: #2B2A22;
+    --ink-soft: #6B6A5C;
+    --moss: #5C6E49;
+    --moss-deep: #3E4C31;
+    --amber: #C69A3E;
+    --amber-soft: #EFE0BC;
+    --carrot-soft: #FBE3C8;
+    --line: #DAD3BC;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #1E1F19; --card: #2A2B23; --ink: #EDE9DA; --ink-soft: #ABA894;
+      --moss: #9DB383; --moss-deep: #BFD1A6; --amber: #D9B36A; --amber-soft: #3B3523;
+      --carrot-soft: #3D3024; --line: #3E3F33;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #1E1F19; --card: #2A2B23; --ink: #EDE9DA; --ink-soft: #ABA894;
+    --moss: #9DB383; --moss-deep: #BFD1A6; --amber: #D9B36A; --amber-soft: #3B3523;
+    --carrot-soft: #3D3024; --line: #3E3F33;
+    color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Zen Maru Gothic', 'Hiragino Maru Gothic ProN', sans-serif;
+    font-size: 15px;
+    line-height: 1.9;
+  }
+  img { display: block; max-width: 100%; height: auto; }
+  .wrap {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 0 max(16px, env(safe-area-inset-right)) 56px max(16px, env(safe-area-inset-left));
+  }
+  .serif { font-family: 'Shippori Mincho', serif; }
+
+  /* 表紙 */
+  .hero { margin: 0 calc(-1 * max(16px, env(safe-area-inset-left))); position: relative; }
+  .hero img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+  .hero-title {
+    background: var(--card);
+    margin: -40px 16px 0;
+    position: relative;
+    border-radius: 24px 8px 24px 8px;
+    padding: 22px 20px 20px;
+    text-align: center;
+    box-shadow: 0 10px 30px -18px rgb(0 0 0 / .35);
+  }
+  .eyebrow { font-size: 12px; letter-spacing: .3em; color: var(--amber); font-weight: 700; margin: 0; }
+  h1 { font-family: 'Shippori Mincho', serif; font-size: clamp(22px, 6vw, 28px); line-height: 1.5; margin: 6px 0 4px; }
+  .sub { margin: 0; color: var(--ink-soft); font-size: 13px; }
+
+  section { margin-top: 44px; }
+  h2 {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 20px;
+    color: var(--moss-deep);
+    text-align: center;
+    margin: 0 0 18px;
+    letter-spacing: .06em;
+  }
+  h2::after {
+    content: "";
+    display: block;
+    width: 36px; height: 2px;
+    background: var(--amber);
+    margin: 8px auto 0;
+    border-radius: 2px;
+  }
+
+  /* 数字 */
+  /* 円グラフ（ドーナツ）。データは <script> の surveys から作る */
+  .stats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .pie {
+    background: var(--card);
+    border-radius: 16px;
+    padding: 14px 12px 12px;
+    margin: 0;
+  }
+  .pie figcaption {
+    font-size: 13px; font-weight: 700; color: var(--moss-deep);
+    text-align: center; margin-bottom: 6px;
+  }
+  .pie svg { display: block; width: 100%; max-width: 132px; height: auto; margin: 0 auto; }
+  .pie .seg { transition: opacity .15s; }
+  .pie svg:hover .seg:not(:hover) { opacity: .55; }
+  .pie .center-num { font-family: 'Shippori Mincho', serif; font-weight: 700; font-size: 22px; fill: var(--ink); }
+  .pie .center-sub { font-size: 10px; fill: var(--ink-soft); }
+  .legend { list-style: none; padding: 0; margin: 8px 0 0; font-size: 11px; line-height: 1.6; }
+  .legend li { display: flex; align-items: center; gap: 6px; color: var(--ink); }
+  .legend li.zero { color: var(--ink-soft); }
+  .legend .dot { flex: none; width: 8px; height: 8px; border-radius: 50%; }
+  .legend .opt { flex: 1; min-width: 0; }
+  .legend .n { flex: none; font-variant-numeric: tabular-nums; }
+  .stats-note { text-align: center; font-size: 12px; color: var(--ink-soft); margin: 10px 0 0; }
+
+  /* 参加前のお悩み */
+  .worries { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
+  .worries li {
+    background: var(--card);
+    border-radius: 999px;
+    padding: 10px 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+  }
+  .worries .count {
+    flex: none;
+    font-size: 12px;
+    color: var(--moss-deep);
+    background: var(--amber-soft);
+    border-radius: 999px;
+    padding: 2px 10px;
+  }
+
+  /* お客様の声 */
+  .voice {
+    background: var(--card);
+    border-radius: 24px 8px 24px 8px;
+    padding: 22px 20px 20px;
+    margin-bottom: 20px;
+  }
+  .voice-head { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+  .avatar {
+    flex: none;
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: var(--amber-soft);
+    color: var(--moss-deep);
+    display: grid; place-items: center;
+    font-family: 'Shippori Mincho', serif;
+    font-weight: 700;
+    font-size: 18px;
+  }
+  .name { font-weight: 700; margin: 0; line-height: 1.4; }
+  .tags { font-size: 12px; color: var(--ink-soft); margin: 0; line-height: 1.5; }
+  .catch {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 18px;
+    line-height: 1.7;
+    color: var(--moss-deep);
+    margin: 0 0 14px;
+    padding-left: 12px;
+    border-left: 3px solid var(--amber);
+  }
+  .qa { margin: 0; }
+  .qa dt { font-size: 12px; font-weight: 700; color: var(--amber); margin-top: 14px; letter-spacing: .05em; }
+  .qa dd { margin: 2px 0 0; }
+  .qa dd p { margin: 0 0 .6em; }
+  .qa dd p:last-child { margin-bottom: 0; }
+  /* 読んでほしいところ・変化が出ているところのマーカー */
+  mark {
+    background: linear-gradient(transparent 58%, var(--amber-soft) 58%);
+    color: inherit;
+    font-weight: 700;
+    padding: 0 1px;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+  }
+
+  /* 写真 */
+  .gallery { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .gallery figure { margin: 0; }
+  .gallery .wide { grid-column: 1 / -1; }
+  .gallery button {
+    display: block; width: 100%; padding: 0; border: 0; background: none;
+    border-radius: 14px; overflow: hidden; cursor: zoom-in;
+  }
+  .gallery button:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+  .gallery img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; }
+  .gallery .wide img { aspect-ratio: 4 / 3; }
+  .gallery figcaption { font-size: 12px; color: var(--ink-soft); margin-top: 4px; line-height: 1.6; }
+
+  /* 締め */
+  .closing {
+    background: var(--carrot-soft);
+    border-radius: 24px 8px 24px 8px;
+    padding: 22px 20px;
+    text-align: center;
+  }
+  .closing p { margin: 0; }
+  .closing .serif { font-size: 17px; color: var(--moss-deep); margin-bottom: 6px; }
+
+  footer { margin-top: 32px; text-align: center; font-size: 12px; color: var(--ink-soft); }
+
+  /* 写真の拡大 */
+  dialog {
+    border: 0; padding: 0; background: transparent;
+    max-width: min(94vw, 720px); max-height: 94vh;
+  }
+  dialog::backdrop { background: rgb(20 20 14 / .85); }
+  dialog img { max-height: 84vh; border-radius: 10px; margin: 0 auto; }
+  dialog p { color: #fff; text-align: center; font-size: 13px; margin: 8px 0 0; }
+  dialog button {
+    display: block; margin: 10px auto 0; font: inherit; font-size: 14px;
+    color: #fff; background: transparent; border: 1px solid rgb(255 255 255 / .5);
+    border-radius: 999px; padding: 6px 24px; cursor: pointer;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="hero">
+      <img src="images/lunch-top.jpg" alt="手作りの麹を使ったランチプレート" width="1050" height="1400">
+    </div>
+    <div class="hero-title">
+      <p class="eyebrow">VOICE</p>
+      <h1>はじめての塩麹づくり<br>ワークショップ</h1>
+      <p class="sub">ご参加いただいた方の声　2026年6月開催</p>
+    </div>
+  </header>
+
+  <section aria-labelledby="h-stats">
+    <h2 id="h-stats">アンケート結果</h2>
+    <div class="stats" id="stats"></div>
+  </section>
+
+  <section aria-labelledby="h-worries">
+    <h2 id="h-worries">参加する前は…</h2>
+    <ul class="worries">
+      <li>塩麹の使い方がマンネリだった</li>
+      <li>塩麹は何が正解なのかよくわからなかった</li>
+      <li>腸活・美容に興味があった</li>
+    </ul>
+  </section>
+
+  <section aria-labelledby="h-voices">
+    <h2 id="h-voices">お客様の声</h2>
+
+    <article class="voice">
+      <div class="voice-head">
+        <div class="avatar" aria-hidden="true">み</div>
+        <div>
+          <p class="name">みかんさん</p>
+          <p class="tags">参加前：塩麹の使い方がマンネリ／何が正解かわからなかった</p>
+        </div>
+      </div>
+      <p class="catch">麹はもっと自由に日々の料理へ取り入れていいんだと感じ、使うハードルがぐっと下がりました。</p>
+      <dl class="qa">
+        <dt>一番の学び・気づき</dt>
+        <dd><p>今まで塩麹は使い方が限られているイメージでしたが、さまざまな料理に活用できることを知り、もっと気軽に取り入れてみたいと思いました。手作りすることで、より愛着を持って使えそうです。</p></dd>
+        <dt>特に心に残ったこと</dt>
+        <dd><p>塩麹・麦麹・玄米麹・黒麹を実際に試食させていただき、<mark>それぞれ風味や味わいが全く違うことに驚きました</mark>。麹だけでそのまま食べたことがなかったので、実際に食べ比べることで違いを体感できたのが印象的でした。</p></dd>
+        <dt>参加してからの変化</dt>
+        <dd><p>塩麹だけでなく、<mark>醤油麹や玉ねぎ麹も積極的に活用していきたい</mark>です。</p></dd>
+        <dt>感想</dt>
+        <dd>
+          <p>麹の種類や特徴、活用方法まで幅広く学ぶことができ、とても充実した時間でした。</p>
+          <p>特に、塩麹・麦麹・玄米麹・黒麹を実際に試食できたことで、それぞれ風味や味わいが違うことを体感でき、「こんなに違うんだ！」と驚きました。これからはもっと気軽に料理に取り入れてみようという気持ちになり、<mark>麹が以前よりぐっと身近に感じられるようになりました</mark>。</p>
+          <p>楽しく学べるだけでなく、<mark>「まずは日々の食事で使ってみよう」と思える</mark>、とても有意義な時間でした。ありがとうございました。</p>
+        </dd>
+      </dl>
+    </article>
+
+    <article class="voice">
+      <div class="voice-head">
+        <div class="avatar" aria-hidden="true">ひ</div>
+        <div>
+          <p class="name">ひとみんさん</p>
+          <p class="tags">参加前：塩麹の使い方がマンネリ／腸活・美容に興味があった</p>
+        </div>
+      </div>
+      <p class="catch">麹初心者でもわかりやすく、どんな質問でも丁寧に教えてくれて麹に興味が出てきました。</p>
+      <dl class="qa">
+        <dt>一番の学び・気づき</dt>
+        <dd><p>塩麹の活用レシピをたくさん教えてもらえて、<mark>簡単にできそうなものばかりだったのでやってみようと思いました</mark>。</p></dd>
+        <dt>特に心に残ったこと</dt>
+        <dd><p>初めて麦麹や玄米麹、黒麹などの味見をしたこと。手作りの麹を使ったランチもとても美味しかったです。</p></dd>
+        <dt>参加してからの変化</dt>
+        <dd><p>麹の良さやいろんな種類があると知れたこと、<mark>麹料理をもっと取り入れたいと思いました</mark>。</p></dd>
+        <dt>感想</dt>
+        <dd>
+          <p>初めての塩麹ワークショップ参加でした。手作りランチもデザートも美味しくて、楽しかったです。<mark>次回も楽しみにしています</mark>。</p>
+        </dd>
+      </dl>
+    </article>
+  </section>
+
+  <section aria-labelledby="h-photos">
+    <h2 id="h-photos">当日の様子</h2>
+    <div class="gallery">
+      <figure class="wide">
+        <button type="button"><img src="images/koji-making.jpg" alt="塩麹を仕込んでいるところ" loading="lazy"></button>
+        <figcaption>みんなで塩麹を仕込みました</figcaption>
+      </figure>
+      <figure>
+        <button type="button"><img src="images/tasting.jpg" alt="テーブルに並んだ麹の試食" loading="lazy"></button>
+        <figcaption>麹の食べ比べ</figcaption>
+      </figure>
+      <figure>
+        <button type="button"><img src="images/kitchen.jpg" alt="キッチンでランチを仕上げているところ" loading="lazy"></button>
+        <figcaption>キッチンでランチの仕上げ</figcaption>
+      </figure>
+      <figure class="wide">
+        <button type="button"><img src="images/lunch-table.jpg" alt="麹を使ったランチプレートが並んだテーブル" loading="lazy"></button>
+        <figcaption>麹を使った手作りランチ</figcaption>
+      </figure>
+      <figure>
+        <button type="button"><img src="images/kitchen2.jpg" alt="キッチンに立つ講師とスタッフ" loading="lazy"></button>
+        <figcaption>和やかな雰囲気で</figcaption>
+      </figure>
+      <figure>
+        <button type="button"><img src="images/dessert.jpg" alt="手作りのデザート" loading="lazy"></button>
+        <figcaption>デザートまで手作り</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section>
+    <div class="closing">
+      <p class="serif">ご参加いただき、ありがとうございました</p>
+      <p>いただいた声は、次の講座づくりに大切に活かしていきます。</p>
+    </div>
+  </section>
+
+  <footer>※ アンケート内容・写真は、ご本人の掲載許可をいただいて掲載しています。</footer>
+</div>
+
+<dialog id="viewer" aria-label="写真の拡大表示">
+  <img id="viewer-img" alt="">
+  <p id="viewer-cap"></p>
+  <button type="button" id="viewer-close">閉じる</button>
+</dialog>
+
+<script>
+  // アンケートの集計（Googleフォームの「要約」の数字）。回答が増えたらここの人数を書き換える
+  const surveys = [
+    { title: "満足度", options: [["とても満足", 2], ["満足", 0], ["普通", 0], ["すこし物足りなかった", 0], ["物足りなかった", 0]] },
+    { title: "分かりやすさ", options: [["とても分かりやすかった", 2], ["分かりやすかった", 0], ["普通", 0], ["やや難しかった", 0], ["難しかった", 0]] },
+    { title: "内容のボリューム", options: [["ちょうどいい", 2], ["やや少ない", 0], ["やや多い", 0], ["少ない", 0], ["多い", 0]] },
+    { title: "お友達に勧めたい？", options: [["ぜひおすすめしたい", 2], ["お友達と一緒に来たい", 0], ["勧めてもいいかも", 0], ["まだ様子見", 0]] },
+  ];
+  // 選択肢の順に使う色（いちばん良い答えが濃い緑）
+  const pieColors = ["var(--moss)", "var(--amber)", "#C9B98F", "#A9A48C", "#8C8A7A"];
+
+  const statsEl = document.getElementById("stats");
+  const R = 42, C = 2 * Math.PI * R;
+  surveys.forEach(s => {
+    const total = s.options.reduce((a, [, n]) => a + n, 0);
+    let offset = 0, segs = "";
+    s.options.forEach(([label, n], i) => {
+      if (!n) return;
+      const len = C * n / total;
+      // 2つ以上に分かれるときは境目に少しすき間をあける
+      const gap = n === total ? 0 : 2;
+      segs += `<circle class="seg" cx="50" cy="50" r="${R}" fill="none" stroke="${pieColors[i]}" stroke-width="14"
+        stroke-dasharray="${Math.max(len - gap, 0)} ${C}" stroke-dashoffset="${-offset}" transform="rotate(-90 50 50)">
+        <title>${label}：${Math.round(n / total * 100)}%</title></circle>`;
+      offset += len;
+    });
+    const top = s.options.reduce((a, b) => (b[1] > a[1] ? b : a));
+    const legend = s.options.map(([label, n], i) =>
+      `<li class="${n ? "" : "zero"}"><span class="dot" style="background:${n ? pieColors[i] : "var(--line)"}"></span><span class="opt">${label}</span><span class="n">${Math.round(n / total * 100)}%</span></li>`).join("");
+    const fig = document.createElement("figure");
+    fig.className = "pie";
+    fig.innerHTML = `
+      <figcaption>${s.title}</figcaption>
+      <svg viewBox="0 0 100 100" role="img" aria-label="${s.title}：${s.options.map(([l, n]) => `${l} ${Math.round(n / total * 100)}%`).join("、")}">
+        <circle cx="50" cy="50" r="${R}" fill="none" stroke="var(--line)" stroke-width="14"/>
+        ${segs}
+        <text class="center-num" x="50" y="58" text-anchor="middle">${Math.round(top[1] / total * 100)}%</text>
+      </svg>
+      <ul class="legend">${legend}</ul>`;
+    statsEl.append(fig);
+  });
+
+  // 写真をタップしたら大きく表示する
+  const viewer = document.getElementById("viewer");
+  const viewerImg = document.getElementById("viewer-img");
+  const viewerCap = document.getElementById("viewer-cap");
+  document.querySelectorAll(".gallery button").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const img = btn.querySelector("img");
+      viewerImg.src = img.src;
+      viewerImg.alt = img.alt;
+      viewerCap.textContent = btn.parentElement.querySelector("figcaption").textContent;
+      if (viewer.showModal) viewer.showModal();
+    });
+  });
+  document.getElementById("viewer-close").addEventListener("click", () => viewer.close());
+  viewer.addEventListener("click", e => { if (e.target === viewer) viewer.close(); });
+</script>
+</body>
+</html>
