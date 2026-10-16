@@ -180,6 +180,20 @@
     box-decoration-break: clone;
   }
 
+  /* 後日のメッセージ（DM） */
+  .after { margin-top: 20px; padding-top: 16px; border-top: 1px dashed var(--line); }
+  .after-label { font-size: 12px; font-weight: 700; color: var(--amber); letter-spacing: .05em; margin: 0 0 10px; }
+  .after-label span { display: block; font-weight: 400; color: var(--ink-soft); letter-spacing: 0; }
+  .bubble {
+    background: var(--bg);
+    border-radius: 18px 18px 18px 4px;
+    padding: 12px 16px;
+    margin-bottom: 8px;
+    font-size: 14px;
+  }
+  .bubble p { margin: 0 0 .5em; }
+  .bubble p:last-child { margin-bottom: 0; }
+
   /* 写真 */
   .gallery { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
   .gallery figure { margin: 0; }
@@ -189,7 +203,7 @@
     border-radius: 14px; overflow: hidden; cursor: zoom-in;
   }
   .gallery button:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
-  .gallery img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; }
+  .gallery img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; object-position: center 25%; }
   .gallery .wide img { aspect-ratio: 4 / 3; }
   .gallery figcaption { font-size: 12px; color: var(--ink-soft); margin-top: 4px; line-height: 1.6; }
 
@@ -230,7 +244,7 @@
     <div class="hero-title">
       <p class="eyebrow">VOICE</p>
       <h1>はじめての塩麹づくり<br>ワークショップ</h1>
-      <p class="sub">ご参加いただいた方の声　2026年6月開催</p>
+      <p class="sub">ご参加いただいた方の声　2026年6月24日開催</p>
     </div>
   </header>
 
@@ -274,6 +288,19 @@
           <p>楽しく学べるだけでなく、<mark>「まずは日々の食事で使ってみよう」と思える</mark>、とても有意義な時間でした。ありがとうございました。</p>
         </dd>
       </dl>
+      <div class="after">
+        <p class="after-label">後日いただいたメッセージ<span>作った塩麹で鶏ハムを作ってくださいました</span></p>
+        <div class="bubble">
+          <p>先週ちえっぴ先生のワークショップで作った塩麹で鶏ハムを作ったら、<mark>今までにないくらい柔らかくなってびっくり</mark>。</p>
+          <p>今まで市販の塩麹使ってたんだけど<mark>全然違うの！</mark>なんとなくいつもよりお肉に甘味がある気がするし、塩味は控えめなのにしっかり味がするの！（これが旨みというやつなのでしょうか？）</p>
+          <p>上手く表現できなくて辛いんだけど、とにかく手作りってやっぱり美味しい！！ということがよくわかりました。</p>
+        </div>
+        <div class="bubble">
+          <p>今までより柔らか過ぎて鶏ハム切りにくいくらいでした笑</p>
+          <p>今まで量をそんなに入れなくても、結構しょっぱく感じることが多かったんだけど、今日はみんなで「なんか甘くない？」って話になったの。</p>
+          <p>そして<mark>近所の麹屋さんに麦麹売ってないか聞きに行ってくる</mark>！</p>
+        </div>
+      </div>
     </article>
 
     <article class="voice">
@@ -297,6 +324,14 @@
           <p>初めての塩麹ワークショップ参加でした。手作りランチもデザートも美味しくて、楽しかったです。<mark>次回も楽しみにしています</mark>。</p>
         </dd>
       </dl>
+      <div class="after">
+        <p class="after-label">翌日いただいたメッセージ</p>
+        <div class="bubble">
+          <p>昨日はありがとう！</p>
+          <p>超初心者だったけど、昨日だけでも塩麹のことたくさん知れて興味が出てきたよ。<mark>もっと麹を生活に取り入れたいと思いました</mark>。</p>
+          <p>ちえっぴの素敵なお家で、ちえっぴの話し方や雰囲気、お子さんにも癒されました。ありがとう。次回も楽しみにしてるね！</p>
+        </div>
+      </div>
     </article>
   </section>
 
@@ -304,24 +339,72 @@
     <h2 id="h-photos">当日の様子</h2>
     <div class="gallery">
       <figure class="wide">
-        <button type="button"><img src="images/koji-making.jpg" alt="塩麹を仕込んでいるところ" loading="lazy"></button>
-        <figcaption>みんなで塩麹を仕込みました</figcaption>
+        <button type="button"><img src="images/group.jpg" alt="テーブルを囲む参加者のみなさん" loading="lazy"></button>
+        <figcaption>みんなでテーブルを囲んで</figcaption>
+      </figure>
+      <figure>
+        <button type="button"><img src="images/koji-making.jpg" alt="塩麹を仕込む参加者と講師" loading="lazy"></button>
+        <figcaption>塩麹の仕込みスタート</figcaption>
+      </figure>
+      <figure>
+        <button type="button"><img style="object-position: center top" src="images/making-c.jpg" alt="笑顔で塩麹を仕込む参加者" loading="lazy"></button>
+        <figcaption>笑顔で仕込み中</figcaption>
+      </figure>
+      <figure>
+        <button type="button"><img src="images/smile-koji.jpg" alt="塩麹の袋を手に笑顔の参加者" loading="lazy"></button>
+        <figcaption>できあがりに笑顔</figcaption>
+      </figure>
+      <figure>
+        <button type="button"><img src="images/koji-making2.jpg" alt="講師と一緒に分量を量る参加者" loading="lazy"></button>
+        <figcaption>先生と一緒に計量</figcaption>
+      </figure>
+      <figure>
+        <button type="button"><img style="object-position: center top" src="images/making-c2.jpg" alt="グラスを手に塩麹を仕込む参加者" loading="lazy"></button>
+        <figcaption>お水を加えて</figcaption>
+      </figure>
+      <figure>
+        <button type="button"><img src="images/smile-close.jpg" alt="仕込んだ塩麹を撮影する参加者" loading="lazy"></button>
+        <figcaption>記念にパシャリ</figcaption>
       </figure>
       <figure>
         <button type="button"><img src="images/tasting.jpg" alt="テーブルに並んだ麹の試食" loading="lazy"></button>
         <figcaption>麹の食べ比べ</figcaption>
       </figure>
       <figure>
+        <button type="button"><img src="images/table-talk.jpg" alt="講師と話しながら試食する参加者" loading="lazy"></button>
+        <figcaption>お話ししながら試食</figcaption>
+      </figure>
+      <figure>
         <button type="button"><img src="images/kitchen.jpg" alt="キッチンでランチを仕上げているところ" loading="lazy"></button>
         <figcaption>キッチンでランチの仕上げ</figcaption>
+      </figure>
+      <figure>
+        <button type="button"><img src="images/cooking-together.jpg" alt="キッチンで一緒に調理している様子" loading="lazy"></button>
+        <figcaption>ランチづくりの様子</figcaption>
+      </figure>
+      <figure>
+        <button type="button"><img src="images/stove.jpg" alt="コンロで調理している様子" loading="lazy"></button>
+        <figcaption>できたてを準備中</figcaption>
+      </figure>
+      <figure>
+        <button type="button"><img src="images/kitchen2.jpg" alt="キッチンに立つ講師とスタッフ" loading="lazy"></button>
+        <figcaption>和やかな雰囲気で</figcaption>
       </figure>
       <figure class="wide">
         <button type="button"><img src="images/lunch-table.jpg" alt="麹を使ったランチプレートが並んだテーブル" loading="lazy"></button>
         <figcaption>麹を使った手作りランチ</figcaption>
       </figure>
       <figure>
-        <button type="button"><img src="images/kitchen2.jpg" alt="キッチンに立つ講師とスタッフ" loading="lazy"></button>
-        <figcaption>和やかな雰囲気で</figcaption>
+        <button type="button"><img src="images/plate.jpg" alt="ランチプレートのアップ" loading="lazy"></button>
+        <figcaption>彩りいっぱいのプレート</figcaption>
+      </figure>
+      <figure>
+        <button type="button"><img src="images/lunch-side.jpg" alt="ランチプレートとスープ" loading="lazy"></button>
+        <figcaption>スープも添えて</figcaption>
+      </figure>
+      <figure>
+        <button type="button"><img src="images/table.jpg" alt="グラスと植物が並んだテーブル" loading="lazy"></button>
+        <figcaption>テーブルのしつらえ</figcaption>
       </figure>
       <figure>
         <button type="button"><img src="images/dessert.jpg" alt="手作りのデザート" loading="lazy"></button>
@@ -337,7 +420,7 @@
     </div>
   </section>
 
-  <footer>※ アンケート内容・写真は、ご本人の掲載許可をいただいて掲載しています。</footer>
+  <footer>※ アンケート・メッセージの内容と写真は、ご本人の掲載許可をいただいて掲載しています。</footer>
 </div>
 
 <dialog id="viewer" aria-label="写真の拡大表示">
